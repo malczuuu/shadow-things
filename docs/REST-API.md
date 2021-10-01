@@ -8,6 +8,7 @@
 - [`PUT /api/things/{thing}`](#put-apithingsthing)
 - [`DELETE /api/things/{thing}`](#delete-apithingsthing)
 - [`GET /api/things/{thing}/shadow`](#get-apithingsthingshadow)
+- [`POST /api/things/{thing}/shadow`](#post-apithingsthingshadow)
 
 ## `GET /api/things`
 
