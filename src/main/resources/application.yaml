@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: shadow-things
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: shadow-things
+  rabbitmq:
+    host: localhost
+    port: 5672
