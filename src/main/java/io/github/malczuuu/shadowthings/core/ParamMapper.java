@@ -9,8 +9,10 @@ public class ParamMapper {
   public int parseInteger(String param, int defaultValue, int minimalValue, int maximalValue) {
     try {
       int value = Integer.parseInt(param);
-      if (value < minimalValue || value > maximalValue) {
-        return defaultValue;
+      if (value < minimalValue) {
+        return minimalValue;
+      } else if (value > maximalValue) {
+        return maximalValue;
       }
       return value;
     } catch (NumberFormatException e) {
