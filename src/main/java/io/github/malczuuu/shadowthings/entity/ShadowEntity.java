@@ -105,6 +105,10 @@ public class ShadowEntity implements Persistable<ObjectId> {
     this.desired = desired;
   }
 
+  public void setReported(HashMap<String, Object> reported) {
+    this.reported = reported;
+  }
+
   public void setVersion(Long version) {
     this.version = version;
   }

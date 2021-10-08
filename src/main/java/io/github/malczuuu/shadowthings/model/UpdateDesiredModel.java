@@ -6,13 +6,13 @@ import java.util.Map;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-public final class UpdateShadowModel {
+public final class UpdateDesiredModel {
 
   private final Map<String, Object> desired;
   private final Long version;
 
   @JsonCreator
-  public UpdateShadowModel(
+  public UpdateDesiredModel(
       @JsonProperty("desired") Map<String, Object> desired, @JsonProperty("version") Long version) {
     this.desired = desired;
     this.version = version;

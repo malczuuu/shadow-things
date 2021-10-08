@@ -2,7 +2,7 @@ package io.github.malczuuu.shadowthings.rest;
 
 import io.github.malczuuu.shadowthings.core.ShadowService;
 import io.github.malczuuu.shadowthings.model.ShadowModel;
-import io.github.malczuuu.shadowthings.model.UpdateShadowModel;
+import io.github.malczuuu.shadowthings.model.UpdateDesiredModel;
 import javax.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +31,7 @@ public class ShadowController {
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ShadowModel updateShadow(
-      @PathVariable("id") String id, @RequestBody @Valid UpdateShadowModel requestBody) {
+      @PathVariable("id") String id, @RequestBody @Valid UpdateDesiredModel requestBody) {
     return shadowService.updateShadow(id, requestBody);
   }
 }

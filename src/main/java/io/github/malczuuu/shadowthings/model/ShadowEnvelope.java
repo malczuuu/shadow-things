@@ -1,0 +1,32 @@
+package io.github.malczuuu.shadowthings.model;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public final class ShadowEnvelope {
+
+  private final ShadowModel shadow;
+  private final String token;
+
+  @JsonCreator
+  public ShadowEnvelope(
+      @JsonProperty("shadow") ShadowModel shadow, @JsonProperty("token") String token) {
+    this.shadow = shadow;
+    this.token = token;
+  }
+
+  @JsonProperty("type")
+  public String getType() {
+    return "shadow";
+  }
+
+  @JsonProperty("shadow")
+  public ShadowModel getShadow() {
+    return shadow;
+  }
+
+  @JsonProperty("token")
+  public String getToken() {
+    return token;
+  }
+}
