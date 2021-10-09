@@ -1,4 +1,4 @@
-package io.github.malczuuu.shadowthings.core;
+package io.github.malczuuu.shadowthings.core.mapper;
 
 import io.github.malczuuu.shadowthings.entity.ViolationEntity;
 import io.github.malczuuu.shadowthings.model.ViolationModel;

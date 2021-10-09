@@ -1,6 +1,8 @@
 package io.github.malczuuu.shadowthings.core;
 
 import io.github.malczuuu.shadowthings.configuration.RabbitConfiguration;
+import io.github.malczuuu.shadowthings.core.exception.ConcurrentUpdateException;
+import io.github.malczuuu.shadowthings.core.mapper.ShadowMapper;
 import io.github.malczuuu.shadowthings.entity.ShadowEntity;
 import io.github.malczuuu.shadowthings.entity.ShadowRepository;
 import io.github.malczuuu.shadowthings.model.ShadowModel;

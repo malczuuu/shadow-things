@@ -1,4 +1,4 @@
-package io.github.malczuuu.shadowthings.core;
+package io.github.malczuuu.shadowthings.core.mapper;
 
 import io.github.malczuuu.shadowthings.entity.ThingEntity;
 import io.github.malczuuu.shadowthings.model.ThingModel;
@@ -24,6 +24,7 @@ public class ThingMapper {
         thing.getUid(),
         thing.getName(),
         thing.isEnabled(),
+        thing.getId() != null ? timeMapper.toIsoString(thing.getId()) : null,
         thing.getLastModifiedDate() != null
             ? timeMapper.toIsoString(thing.getLastModifiedDate())
             : null,

@@ -1,4 +1,4 @@
-package io.github.malczuuu.shadowthings.core;
+package io.github.malczuuu.shadowthings.core.exception;
 
 import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.problem4j.core.ProblemException;

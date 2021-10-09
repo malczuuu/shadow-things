@@ -2,6 +2,7 @@ package io.github.malczuuu.shadowthings.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import io.github.malczuuu.shadowthings.core.mapper.TimeMapper;
 import java.time.Instant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,6 @@ class TimeMapperTests {
   void shouldMapInstantToIso() {
     String isoString = timeMapper.toIsoString(Instant.parse("2021-05-02T23:44:32.445Z"));
 
-    assertEquals("2021-05-02T23:44:32.445Z", isoString);
+    assertEquals("2021-05-02T23:44:32Z", isoString);
   }
 }

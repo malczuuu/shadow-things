@@ -2,9 +2,11 @@ package io.github.malczuuu.shadowthings.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import io.github.malczuuu.shadowthings.core.mapper.ThingMapper;
 import io.github.malczuuu.shadowthings.entity.ThingEntity;
 import io.github.malczuuu.shadowthings.model.ThingModel;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +38,9 @@ class ThingMapperTests {
     assertEquals(entity.getUid(), model.getId());
     assertEquals(entity.getName(), model.getName());
     assertEquals(entity.isEnabled(), model.isEnabled());
-    assertEquals(entity.getLastModifiedDate().toString(), model.getLastModifiedDate());
+    assertEquals(
+        entity.getLastModifiedDate().truncatedTo(ChronoUnit.SECONDS).toString(),
+        model.getLastModifiedDate());
     assertEquals(entity.getVersion(), model.getVersion());
   }
 }

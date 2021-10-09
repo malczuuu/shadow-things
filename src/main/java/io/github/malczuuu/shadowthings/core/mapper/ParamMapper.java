@@ -1,4 +1,4 @@
-package io.github.malczuuu.shadowthings.core;
+package io.github.malczuuu.shadowthings.core.mapper;
 
 public class ParamMapper {
 

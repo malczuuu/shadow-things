@@ -1,7 +1,7 @@
 package io.github.malczuuu.shadowthings.rest;
 
-import io.github.malczuuu.shadowthings.core.ParamMapper;
 import io.github.malczuuu.shadowthings.core.ThingService;
+import io.github.malczuuu.shadowthings.core.mapper.ParamMapper;
 import io.github.malczuuu.shadowthings.model.CreateThingModel;
 import io.github.malczuuu.shadowthings.model.PasswordModel;
 import io.github.malczuuu.shadowthings.model.ThingModel;

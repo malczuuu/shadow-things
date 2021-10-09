@@ -1,5 +1,9 @@
 package io.github.malczuuu.shadowthings.core;
 
+import io.github.malczuuu.shadowthings.core.exception.ConcurrentUpdateException;
+import io.github.malczuuu.shadowthings.core.exception.ThingDuplicateException;
+import io.github.malczuuu.shadowthings.core.exception.ThingNotFoundException;
+import io.github.malczuuu.shadowthings.core.mapper.ThingMapper;
 import io.github.malczuuu.shadowthings.entity.ShadowRepository;
 import io.github.malczuuu.shadowthings.entity.ThingEntity;
 import io.github.malczuuu.shadowthings.entity.ThingRepository;

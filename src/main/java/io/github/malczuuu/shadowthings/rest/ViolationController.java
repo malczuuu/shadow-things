@@ -1,8 +1,8 @@
 package io.github.malczuuu.shadowthings.rest;
 
-import io.github.malczuuu.shadowthings.core.ParamMapper;
 import io.github.malczuuu.shadowthings.core.ThingService;
 import io.github.malczuuu.shadowthings.core.ViolationService;
+import io.github.malczuuu.shadowthings.core.mapper.ParamMapper;
 import io.github.malczuuu.shadowthings.model.ViolationPage;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

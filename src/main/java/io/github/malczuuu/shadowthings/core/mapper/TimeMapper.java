@@ -1,7 +1,8 @@
-package io.github.malczuuu.shadowthings.core;
+package io.github.malczuuu.shadowthings.core.mapper;
 
 import java.time.Instant;
 import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
 import org.bson.types.ObjectId;
 
 public class TimeMapper {
@@ -12,6 +13,6 @@ public class TimeMapper {
   }
 
   public String toIsoString(Instant instant) {
-    return instant.atOffset(ZoneOffset.UTC).toString();
+    return instant.truncatedTo(ChronoUnit.SECONDS).atOffset(ZoneOffset.UTC).toString();
   }
 }

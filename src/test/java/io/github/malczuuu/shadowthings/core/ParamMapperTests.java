@@ -2,6 +2,7 @@ package io.github.malczuuu.shadowthings.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import io.github.malczuuu.shadowthings.core.mapper.ParamMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
