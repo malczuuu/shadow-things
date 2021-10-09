@@ -2,6 +2,8 @@ package io.github.malczuuu.shadowthings.rabbit;
 
 import io.github.malczuuu.shadowthings.configuration.RabbitConfiguration;
 import io.github.malczuuu.shadowthings.core.ShadowService;
+import io.github.malczuuu.shadowthings.core.ThingService;
+import io.github.malczuuu.shadowthings.core.ViolationService;
 import io.github.malczuuu.shadowthings.model.ShadowModel;
 import io.github.malczuuu.shadowthings.model.message.ShadowEnvelope;
 import io.github.malczuuu.shadowthings.model.message.TokenEnvelope;
@@ -20,14 +22,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShadowQueryListener {
 
+  private final ThingService thingService;
   private final ShadowService shadowService;
-  private final RabbitOperations rabbitOperations;
+  private final ViolationService violationService;
 
+  private final RabbitOperations rabbitOperations;
   private final Validator validator;
 
   public ShadowQueryListener(
-      ShadowService shadowService, RabbitOperations rabbitOperations, Validator validator) {
+      ThingService thingService,
+      ShadowService shadowService,
+      ViolationService violationService,
+      RabbitOperations rabbitOperations,
+      Validator validator) {
+    this.thingService = thingService;
     this.shadowService = shadowService;
+    this.violationService = violationService;
     this.rabbitOperations = rabbitOperations;
     this.validator = validator;
   }
@@ -39,8 +49,13 @@ public class ShadowQueryListener {
       return;
     }
 
+    if (!thingService.doesThingExists(thingId.get())) {
+      return;
+    }
+
     Set<ConstraintViolation<TokenEnvelope>> violations = validator.validate(token);
     if (!violations.isEmpty()) {
+      violationService.storeViolation(thingId.get(), "shadow_query", violations);
       return;
     }
 

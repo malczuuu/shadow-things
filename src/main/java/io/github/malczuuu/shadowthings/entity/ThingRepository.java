@@ -9,4 +9,6 @@ public interface ThingRepository extends MongoRepository<ThingEntity, ObjectId> 
   Optional<ThingEntity> findByUid(String uid);
 
   void deleteByUid(String id);
+
+  boolean existsByUid(String id);
 }

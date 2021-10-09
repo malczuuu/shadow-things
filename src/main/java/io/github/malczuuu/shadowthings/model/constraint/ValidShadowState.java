@@ -16,6 +16,8 @@ public @interface ValidShadowState {
 
   int fieldNameMaxLength() default 256;
 
+  String fieldNameRegexp() default "^[a-zA-Z]\\w*$";
+
   int fieldValueMaxLength() default 1024;
 
   String message() default "";

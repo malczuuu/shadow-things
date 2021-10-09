@@ -8,6 +8,8 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017
       database: shadow-things
+  jackson:
+    default-property-inclusion: non_null
   rabbitmq:
     host: localhost
     port: 5672

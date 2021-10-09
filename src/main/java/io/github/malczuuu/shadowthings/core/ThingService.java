@@ -34,6 +34,16 @@ public class ThingService {
     return mapper.toModel(entities);
   }
 
+  public void requireThing(String id) {
+    if (!doesThingExists(id)) {
+      throw new ThingNotFoundException(id);
+    }
+  }
+
+  public boolean doesThingExists(String id) {
+    return thingRepository.existsByUid(id);
+  }
+
   public ThingModel findThing(String id) {
     ThingEntity entity = fetchThing(id);
     return mapper.toModel(entity);
