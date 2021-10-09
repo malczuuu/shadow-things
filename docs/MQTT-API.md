@@ -7,60 +7,28 @@
 
 ## Topics
 
-| topic name                  | description                                         |
-| --------------------------- | --------------------------------------------------- |
-| `things/{id}/shadow/get`    | send a request to retrieve current thing shadow     |
-| `things/{id}/shadow/update` | receive twin messages and responses from the server |
+| topic name                       | description                                         |
+| -------------------------------- | --------------------------------------------------- |
+| `api/things/{id}/shadow/query`   | send a request to retrieve current thing shadow     |
+| `api/things/{id}/shadow/update`  | send a request to update shadow reported state      |
+| `api/things/{id}/shadow/receive` | receive twin messages and responses from the server |
 
 ## Messages
 
-### `PullDesiredState`
+### `TokenEnvelope`
 
 ```json
 {
-  "type": "pull",
-  "client_token": "9ocsicS1pdaldXDqLoU9"
+  "token": "9ocsicS1pdaldXDqLoU9"
 }
 ```
 
-### `PushReportedState`
+### `ShadowEnvelope`
 
 ```json
 {
-  "type": "push",
-  "push": {
-    "reported": {
-      "light_on": true,
-      "resolution": "1080p",
-      "upload_url": "https://10.34.231.12:8443/cams"
-    }
-  },
-  "client_token": "9ocsicS1pdaldXDqLoU9"
-}
-```
-
-### `DesiredState`
-
-```json
-{
-  "type": "desired_state",
-  "desired_state": {
-    "desired": {
-      "light_on": true,
-      "resolution": "1080p",
-      "upload_url": "https://10.34.231.12:8443/cams"
-    }
-  },
-  "client_token": "9ocsicS1pdaldXDqLoU9"
-}
-```
-
-### `PushReportedStateResult`
-
-```json
-{
-  "type": "desired_state",
-  "desired_state": {
+  "type": "shadow",
+  "shadow": {
     "desired": {
       "light_on": true,
       "resolution": "1080p",
@@ -70,8 +38,24 @@
       "light_on": true,
       "resolution": "1080p",
       "upload_url": "https://10.34.231.12:8443/cams"
-    }
+    },
+    "last_modified_date": "2021-10-01T00:23:11Z",
+    "version": 31
   },
-  "client_token": "9ocsicS1pdaldXDqLoU9"
+  "token": "9ocsicS1pdaldXDqLoU9"
+}
+```
+
+### `ReportedEnvelope`
+
+```json
+{
+  "type": "reported",
+  "reported": {
+    "light_on": true,
+    "resolution": "1080p",
+    "upload_url": "https://10.34.231.12:8443/cams"
+  },
+  "token": "9ocsicS1pdaldXDqLoU9"
 }
 ```
