@@ -1,8 +1,11 @@
-package io.github.malczuuu.shadowthings.model;
+package io.github.malczuuu.shadowthings.model.message;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.malczuuu.shadowthings.model.constraint.ValidShadowState;
 import java.util.Map;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public final class ReportedEnvelope {
 
@@ -21,11 +24,15 @@ public final class ReportedEnvelope {
     return "reported";
   }
 
+  @NotNull
+  @ValidShadowState
   @JsonProperty("reported")
   public Map<String, Object> getReported() {
     return reported;
   }
 
+  @NotNull
+  @Size(min = 1, max = 36)
   @JsonProperty("token")
   public String getToken() {
     return token;

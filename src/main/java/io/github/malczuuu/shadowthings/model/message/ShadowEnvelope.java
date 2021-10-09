@@ -1,7 +1,8 @@
-package io.github.malczuuu.shadowthings.model;
+package io.github.malczuuu.shadowthings.model.message;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.malczuuu.shadowthings.model.ShadowModel;
 
 public final class ShadowEnvelope {
 

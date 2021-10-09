@@ -2,6 +2,7 @@ package io.github.malczuuu.shadowthings.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.malczuuu.shadowthings.model.constraint.ValidShadowState;
 import java.util.Map;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ public final class UpdateDesiredModel {
   }
 
   @NotNull
+  @ValidShadowState
   @JsonProperty("desired")
   public Map<String, Object> getDesired() {
     return desired;
