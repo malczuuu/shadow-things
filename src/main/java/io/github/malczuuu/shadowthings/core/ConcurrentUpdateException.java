@@ -11,7 +11,7 @@ public class ConcurrentUpdateException extends ProblemException {
         Problem.builder()
             .title(HttpStatus.CONFLICT.getReasonPhrase())
             .status(HttpStatus.CONFLICT.value())
-            .detail("Requested version not up to date")
+            .detail("Version field mismatched")
             .build());
   }
 }
