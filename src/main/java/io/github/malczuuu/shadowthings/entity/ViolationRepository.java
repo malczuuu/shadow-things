@@ -11,4 +11,6 @@ public interface ViolationRepository extends MongoRepository<ViolationEntity, Ob
 
   Page<ViolationEntity> findAllByThingUidAndActionType(
       String thingUid, String actionType, Pageable pageable);
+
+  void deleteAllByThingUid(String thingUid);
 }

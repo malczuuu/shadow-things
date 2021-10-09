@@ -7,6 +7,7 @@ import io.github.malczuuu.shadowthings.core.mapper.ThingMapper;
 import io.github.malczuuu.shadowthings.entity.ShadowRepository;
 import io.github.malczuuu.shadowthings.entity.ThingEntity;
 import io.github.malczuuu.shadowthings.entity.ThingRepository;
+import io.github.malczuuu.shadowthings.entity.ViolationRepository;
 import io.github.malczuuu.shadowthings.model.CreateThingModel;
 import io.github.malczuuu.shadowthings.model.PasswordModel;
 import io.github.malczuuu.shadowthings.model.ThingModel;
@@ -22,14 +23,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class ThingService {
 
-  private final ShadowRepository shadowRepository;
   private final ThingRepository thingRepository;
+  private final ShadowRepository shadowRepository;
+  private final ViolationRepository violationRepository;
 
   private final ThingMapper mapper = new ThingMapper();
 
-  public ThingService(ShadowRepository shadowRepository, ThingRepository thingRepository) {
+  public ThingService(
+      ThingRepository thingRepository,
+      ShadowRepository shadowRepository,
+      ViolationRepository violationRepository) {
     this.shadowRepository = shadowRepository;
     this.thingRepository = thingRepository;
+    this.violationRepository = violationRepository;
   }
 
   public ThingPageModel findThings(int page, int size) {
@@ -95,6 +101,7 @@ public class ThingService {
   }
 
   public void deleteThing(String id) {
+    violationRepository.deleteAllByThingUid(id);
     shadowRepository.deleteByThingUid(id);
     thingRepository.deleteByUid(id);
   }
