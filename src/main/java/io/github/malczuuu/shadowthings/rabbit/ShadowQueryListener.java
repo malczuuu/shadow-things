@@ -1,5 +1,6 @@
 package io.github.malczuuu.shadowthings.rabbit;
 
+import com.rabbitmq.client.Channel;
 import io.github.malczuuu.shadowthings.configuration.RabbitConfiguration;
 import io.github.malczuuu.shadowthings.core.ShadowService;
 import io.github.malczuuu.shadowthings.core.ThingService;
@@ -7,6 +8,7 @@ import io.github.malczuuu.shadowthings.core.ViolationService;
 import io.github.malczuuu.shadowthings.model.ShadowModel;
 import io.github.malczuuu.shadowthings.model.message.ShadowEnvelope;
 import io.github.malczuuu.shadowthings.model.message.TokenEnvelope;
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -42,20 +44,27 @@ public class ShadowQueryListener {
     this.validator = validator;
   }
 
-  @RabbitListener(queues = {RabbitConfiguration.SHADOW_QUERIES_QUEUE_NAME})
-  public void onShadowQuery(Message message, @Payload TokenEnvelope token) {
+  // TODO handle duplication with ShadowUpdateListener
+  @RabbitListener(
+      queues = {RabbitConfiguration.SHADOW_QUERIES_QUEUE_NAME},
+      ackMode = "MANUAL")
+  public void onShadowQuery(Message message, Channel channel, @Payload TokenEnvelope token)
+      throws IOException {
     Optional<String> thingId = getThingUid(message.getMessageProperties().getReceivedRoutingKey());
     if (thingId.isEmpty()) {
+      channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
       return;
     }
 
     if (!thingService.doesThingExists(thingId.get())) {
+      channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
       return;
     }
 
     Set<ConstraintViolation<TokenEnvelope>> violations = validator.validate(token);
     if (!violations.isEmpty()) {
       violationService.storeViolation(thingId.get(), "shadow_query", violations);
+      channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
       return;
     }
 
@@ -66,6 +75,8 @@ public class ShadowQueryListener {
         RabbitConfiguration.TOPIC_EXCHANGE,
         RabbitConfiguration.shadowMessageTopic(thingId.get()),
         envelope);
+
+    channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
   }
 
   private Optional<String> getThingUid(String routingKey) {

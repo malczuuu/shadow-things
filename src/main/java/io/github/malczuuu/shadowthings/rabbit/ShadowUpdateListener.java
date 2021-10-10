@@ -1,5 +1,6 @@
 package io.github.malczuuu.shadowthings.rabbit;
 
+import com.rabbitmq.client.Channel;
 import io.github.malczuuu.shadowthings.configuration.RabbitConfiguration;
 import io.github.malczuuu.shadowthings.core.ShadowService;
 import io.github.malczuuu.shadowthings.core.ThingService;
@@ -7,6 +8,7 @@ import io.github.malczuuu.shadowthings.core.ViolationService;
 import io.github.malczuuu.shadowthings.model.ShadowModel;
 import io.github.malczuuu.shadowthings.model.message.ReportedEnvelope;
 import io.github.malczuuu.shadowthings.model.message.ShadowEnvelope;
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -42,20 +44,27 @@ public class ShadowUpdateListener {
     this.validator = validator;
   }
 
-  @RabbitListener(queues = {RabbitConfiguration.SHADOW_UPDATES_QUEUE_NAME})
-  public void onShadowQuery(Message message, @Payload ReportedEnvelope reported) {
+  // TODO handle duplication with ShadowQueryListener
+  @RabbitListener(
+      queues = {RabbitConfiguration.SHADOW_UPDATES_QUEUE_NAME},
+      ackMode = "MANUAL")
+  public void onShadowQuery(Message message, Channel channel, @Payload ReportedEnvelope reported)
+      throws IOException {
     Optional<String> thingId = getThingUid(message.getMessageProperties().getReceivedRoutingKey());
     if (thingId.isEmpty()) {
+      channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
       return;
     }
 
     if (!thingService.doesThingExists(thingId.get())) {
+      channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
       return;
     }
 
     Set<ConstraintViolation<ReportedEnvelope>> violations = validator.validate(reported);
     if (!violations.isEmpty()) {
       violationService.storeViolation(thingId.get(), "reported_update", violations);
+      channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
       return;
     }
 
@@ -66,6 +75,8 @@ public class ShadowUpdateListener {
         RabbitConfiguration.TOPIC_EXCHANGE,
         RabbitConfiguration.shadowMessageTopic(thingId.get()),
         envelope);
+
+    channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
   }
 
   private Optional<String> getThingUid(String routingKey) {
