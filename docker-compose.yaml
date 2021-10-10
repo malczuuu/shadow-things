@@ -8,6 +8,7 @@ services:
     volumes:
       - mongodb_data:/data/db
       - ./conf/mongo/01-replica-set.init.js:/docker-entrypoint-initdb.d/01-replica-set.init.js
+      - ./conf/mongo/02-collections.init.js:/docker-entrypoint-initdb.d/02-collections.init.js
     networks:
       - mongo
 
