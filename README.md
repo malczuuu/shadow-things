@@ -5,6 +5,7 @@ A simple IoT device shadow application.
 ## Table of Contents
 
 - [Device State Replica](#device-state-replica)
+- [Running the application](#running-the-application)
 - [REST API](#rest-api)
     - [`GET /api/things`](#get-apithings)
     - [`GET /api/things/{thing}`](#get-apithingsthing)
@@ -29,6 +30,23 @@ requirements.
 **Sources:**
 
 - [https://iotatlas.net/](https://iotatlas.net/en/patterns/device_state_replica/)
+
+## Running the application
+
+The application requires MongoDB and RabbitMQ to be up and running.
+
+```bash
+$ docker-compose up -d
+```
+
+Run the application with `bootRun` task.
+
+```bash
+$ ./gradlew bootRun
+```
+
+Alternatively, the application can be run by building and executing the jarfile or by using most
+IDEs.
 
 ## REST API
 
