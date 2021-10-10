@@ -255,13 +255,22 @@ Content-Type: application/json
 
 #### `TokenEnvelope`
 
+A message published on `(...)/shadow/query` topic, to request `ShadowEnvelope` message to be sent
+on `(...)/shadow/receive` topic.
+
 ```json
 {
   "token": "9ocsicS1pdaldXDqLoU9"
 }
 ```
 
+Where:
+
+- `"token"` is used to correlate request with response, sent asynchronously on another topic.
+
 #### `ShadowEnvelope`
+
+A message received on `(...)/shadow/receive` topic, with the latest shadow update.
 
 ```json
 {
@@ -284,7 +293,20 @@ Content-Type: application/json
 }
 ```
 
+Where:
+
+- `"desired"` is the state requested by the user in cloud application.
+- `"reported"` is the latest state reported by the device.
+- `"last_modified_date"` is the latest timestamp of shadow modification (either the timestamp device
+  or user modification).
+- `"version"` is the version of the document for optimistic locking. **Note**, that optimistic
+  locking does not apply to the MQTT API.
+- `"token"` is used to correlate request with response, sent asynchronously on another topic.
+
 #### `ReportedEnvelope`
+
+A message published on `(...)/shadow/update` topic, to update the reported status of the device.
+Afterwards, `ShadowEnvelope` message is sent as a response on `(...)/shadow/receive` topic.
 
 ```json
 {
@@ -297,3 +319,8 @@ Content-Type: application/json
   "token": "9ocsicS1pdaldXDqLoU9"
 }
 ```
+
+Where:
+
+- `"reported"` is the latest state reported by the device.
+- `"token"` is used to correlate request with response, sent asynchronously on another topic.
