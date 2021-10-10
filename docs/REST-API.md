@@ -9,7 +9,7 @@
 - [`DELETE /api/things/{thing}`](#delete-apithingsthing)
 - [`GET /api/things/{thing}/shadow`](#get-apithingsthingshadow)
 - [`POST /api/things/{thing}/shadow`](#post-apithingsthingshadow)
-- [`GET /api/things/{thing}/shadow/violations`](#)
+- [`GET /api/things/{thing}/shadow/violations`](#get-apithingsthingshadowviolations)
 
 ## `GET /api/things`
 
@@ -27,14 +27,12 @@ Content-Type: application/json
       "name": "SmartCamera03",
       "created_date": "2021-10-01T11:32:12.671Z",
       "last_modified_date": "2021-10-01T12:31:42.239Z",
-      "links": {
-        "self": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66"
-      }
     }
   ],
-  "_links": {
-    "next": "/api/things?cursor=yJbmFqkJ6ZQhrKNxKzvwvlAX19jIAaNZ6F1wZD7BTLS8SFPnTarSltxhMVnKaj47osZuUtACbO5tbHJt"
-  }
+  "page": 0,
+  "size": 20,
+  "totalElements": 23,
+  "totalPages": 2
 }
 ```
 
@@ -52,11 +50,7 @@ Content-Type: application/json
   "name": "SmartCamera03",
   "created_date": "2021-10-01T11:32:12.671Z",
   "last_modified_date": "2021-10-01T12:31:42.239Z",
-  "version": 5,
-  "_links": {
-    "self": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66",
-    "shadow": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66/shadow"
-  }
+  "version": 5
 }
 ```
 
@@ -87,11 +81,7 @@ Content-Type: application/json
   "name": "SmartCamera03",
   "created_date": "2021-10-01T11:32:12.671Z",
   "last_modified_date": "2021-10-01T11:32:12.671Z",
-  "version": 0,
-  "_links": {
-    "self": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66",
-    "shadow": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66/shadow"
-  }
+  "version": 0
 }
 ```
 
@@ -122,11 +112,7 @@ Content-Type: application/json
   "name": "SmartCamera03",
   "created_date": "2021-10-01T11:32:12.671Z",
   "last_modified_date": "2021-10-01T12:31:42.239Z",
-  "version": 5,
-  "_links": {
-    "self": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66",
-    "shadow": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66/shadow"
-  }
+  "version": 5
 }
 ```
 
@@ -154,10 +140,7 @@ Content-Type: application/json
     "resolution": "480p",
     "upload_url": "https://10.34.231.12:8443/cams"
   },
-  "version": 8,
-  "_links": {
-    "thing": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66"
-  }
+  "version": 8
 }
 ```
 
@@ -199,14 +182,11 @@ Content-Type: application/json
     "resolution": "1080p",
     "upload_url": "https://10.34.231.12:8443/cams"
   },
-  "version": 9,
-  "_links": {
-    "thing": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66"
-  }
+  "version": 9
 }
 ```
 
-## `POST /api/things/{thing}/shadow/violations`
+## `GET /api/things/{thing}/shadow/violations`
 
 Messages sent over MQTT (or AMQP) are being validated and quietly discarded if validation
 constraints aren't met. Violations are available over REST API.
@@ -233,8 +213,9 @@ Content-Type: application/json
       "created_date": "2021-10-10T07:46:38Z"
     }
   ],
-  "_links": {
-    "thing": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66/shadow/violations?cursor=yJbmFqkJ6ZQhrKNxKzvwvlAX19jIAaNZ6F1wZD7BTLS8SFPnTarSltxhMVnKaj47osZuUtACbO5tbHJt"
-  }
+  "page": 0,
+  "size": 20,
+  "totalElements": 23,
+  "totalPages": 2
 }
 ```
