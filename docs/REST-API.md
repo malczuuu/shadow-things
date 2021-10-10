@@ -9,6 +9,7 @@
 - [`DELETE /api/things/{thing}`](#delete-apithingsthing)
 - [`GET /api/things/{thing}/shadow`](#get-apithingsthingshadow)
 - [`POST /api/things/{thing}/shadow`](#post-apithingsthingshadow)
+- [`GET /api/things/{thing}/shadow/violations`](#)
 
 ## `GET /api/things`
 
@@ -201,6 +202,39 @@ Content-Type: application/json
   "version": 9,
   "_links": {
     "thing": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66"
+  }
+}
+```
+
+## `POST /api/things/{thing}/shadow/violations`
+
+Messages sent over MQTT (or AMQP) are being validated and quietly discarded if validation
+constraints aren't met. Violations are available over REST API.
+
+```text
+Content-Type: application/json
+```
+
+```json
+{
+  "content": [
+    {
+      "action_type": "reported_update",
+      "violations": [
+        {
+          "path": "reported.qwertyuiopoghyjrfogsdfogjdfgsldfkjgsldkfgjhsldfkghjsfdghklsfgjhslfjghslfdjgs;dfljhs;dlfkjh;sdlfkghjs;dflkgjsld;fgkjs;dflgksjdfl;ghsjdfhlkdjflghkdfgjdfghfghfghfiuytrewqwertyuioiuytrewqwertyuiopoiuytrewsdfghuytfghjuytfghjiuytfghjuygtbnjuygvbnjuygtvbnhjytgfvbhgfvbhytfvbhytrfvghuytfvbnjuyg",
+          "message": "must have field name matching ^[a-zA-Z]\\w*$"
+        },
+        {
+          "path": "reported.'qwertyuiopoghyjrfogsdfogjd...'",
+          "message": "must have field name no longer than 256"
+        }
+      ],
+      "created_date": "2021-10-10T07:46:38Z"
+    }
+  ],
+  "_links": {
+    "thing": "/api/things/d2bfcd45-94a7-43c9-98af-87893cfc2c66/shadow/violations?cursor=yJbmFqkJ6ZQhrKNxKzvwvlAX19jIAaNZ6F1wZD7BTLS8SFPnTarSltxhMVnKaj47osZuUtACbO5tbHJt"
   }
 }
 ```
