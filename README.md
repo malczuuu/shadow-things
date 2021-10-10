@@ -39,6 +39,9 @@ The application requires MongoDB and RabbitMQ to be up and running.
 $ docker-compose up -d
 ```
 
+Consider browsing [`docker-compose.yaml`](./docker-compose.yaml) file and [`conf/`](./conf)
+directory for more detail.
+
 Run the application with `bootRun` task.
 
 ```bash
