@@ -1,4 +1,4 @@
-# Shadow Things
+# Silhouette
 
 A simple IoT device shadow application.
 
@@ -18,6 +18,7 @@ A simple IoT device shadow application.
 - [MQTT API](#mqtt-api)
     - [Topics](#topics)
     - [Messages](#messages)
+- [Trivia](#trivia)
 
 ## Device State Replica
 
@@ -345,3 +346,14 @@ Where:
 
 - `"reported"` is the latest state reported by the device.
 - `"token"` is used to correlate request with response, sent asynchronously on another topic.
+
+## Trivia
+
+According to Google, _silhouette_ is a synonym for the word _shadow_.
+
+> **noun:** _silhouette_; **plural noun:** _silhouettes_
+>
+> the dark shape and outline of someone or something visible in restricted light against a brighter
+> background.
+>
+> _"she paused to see its silhouette against the dimming sky"_

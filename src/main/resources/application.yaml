@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: shadow-things
+    name: silhouette
   data:
     mongodb:
       uri: mongodb://localhost:27017
-      database: shadow-things
+      database: silhouette
   jackson:
     default-property-inclusion: non_null
   rabbitmq:
