@@ -4,27 +4,35 @@ import io.github.malczuuu.silhouette.core.ThingService;
 import io.github.malczuuu.silhouette.core.ViolationService;
 import io.github.malczuuu.silhouette.core.mapper.ParamMapper;
 import io.github.malczuuu.silhouette.model.ViolationPage;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
+@Api(tags = "shadow")
 @RestController
 @RequestMapping(path = "/api/things/{id}/shadow/violations")
-public class ViolationController {
+public class ViolationRestController {
 
   private final ThingService thingService;
   private final ViolationService violationService;
 
   private final ParamMapper paramMapper = new ParamMapper();
 
-  public ViolationController(ThingService thingService, ViolationService violationService) {
+  public ViolationRestController(ThingService thingService, ViolationService violationService) {
     this.thingService = thingService;
     this.violationService = violationService;
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(name = "action_type", dataType = "string", paramType = "query")
+  })
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public ViolationPage getViolations(
       @PathVariable("id") String id,
@@ -36,6 +44,7 @@ public class ViolationController {
     return violationService.getViolations(id, pageAsInt, sizeAsInt);
   }
 
+  @ApiIgnore
   @GetMapping(
       params = {"action_type"},
       produces = MediaType.APPLICATION_JSON_VALUE)

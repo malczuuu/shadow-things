@@ -4,6 +4,7 @@ import io.github.malczuuu.silhouette.core.ShadowService;
 import io.github.malczuuu.silhouette.core.ThingService;
 import io.github.malczuuu.silhouette.model.ShadowModel;
 import io.github.malczuuu.silhouette.model.UpdateDesiredModel;
+import io.swagger.annotations.Api;
 import javax.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(tags = "shadow")
 @RestController
 @RequestMapping(path = "/api/things/{id}/shadow")
-public class ShadowController {
+public class ShadowRestController {
 
   private final ThingService thingService;
   private final ShadowService shadowService;
 
-  public ShadowController(ThingService thingService, ShadowService shadowService) {
+  public ShadowRestController(ThingService thingService, ShadowService shadowService) {
     this.thingService = thingService;
     this.shadowService = shadowService;
   }

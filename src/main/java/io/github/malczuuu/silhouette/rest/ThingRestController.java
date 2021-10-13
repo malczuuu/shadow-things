@@ -7,6 +7,7 @@ import io.github.malczuuu.silhouette.model.PasswordModel;
 import io.github.malczuuu.silhouette.model.ThingModel;
 import io.github.malczuuu.silhouette.model.ThingPageModel;
 import io.github.malczuuu.silhouette.model.UpdateThingModel;
+import io.swagger.annotations.Api;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,15 +22,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(tags = "things")
 @RestController
 @RequestMapping(path = "/api/things")
-public class ThingController {
+public class ThingRestController {
 
   private final ThingService thingService;
 
   private final ParamMapper paramMapper = new ParamMapper();
 
-  public ThingController(ThingService thingService) {
+  public ThingRestController(ThingService thingService) {
     this.thingService = thingService;
   }
 
