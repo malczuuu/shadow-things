@@ -52,6 +52,8 @@ $ ./gradlew bootRun
 Alternatively, the application can be run by building and executing the jarfile or by using most
 IDEs.
 
+Browsing `http://localhost:8080` would redirect to `/swagger-ui/index.html` for easier API access.
+
 ## REST API
 
 ### `GET /api/things`
