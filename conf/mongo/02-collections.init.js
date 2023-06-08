@@ -1,4 +1,4 @@
-db = db.getSiblingDB("silhouette");
+db = db.getSiblingDB("ushadow");
 
 db.createCollection("shadows");
 db.createCollection("things");

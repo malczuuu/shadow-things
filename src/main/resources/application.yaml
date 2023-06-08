@@ -1,13 +1,17 @@
 server:
   port: 8080
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
 spring:
   application:
-    name: silhouette
+    name: ushadow
   data:
     mongodb:
-      uri: mongodb://localhost:27017
-      database: silhouette
+      uri: mongodb://localhost:27017/ushadow
+      database: ushadow
   jackson:
     default-property-inclusion: non_null
   rabbitmq:

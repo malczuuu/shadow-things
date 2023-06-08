@@ -1,7 +1,7 @@
 version: "3"
 services:
   mongo:
-    image: mongo:5.0.2
+    image: mongo:6.0.6
     ports:
       - "127.0.0.1:27017:27017"
     command: [ --replSet, rs0 ]
@@ -13,7 +13,7 @@ services:
       - mongo
 
   rabbitmq:
-    image: rabbitmq:3.9.7-management-alpine
+    image: rabbitmq:3.10.24-management-alpine
     ports:
       - "127.0.0.1:1883:1883"
       - "127.0.0.1:5672:5672"
