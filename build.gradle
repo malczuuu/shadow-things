@@ -34,5 +34,5 @@ test {
 }
 
 googleJavaFormat {
-    toolVersion = "1.8"
+    toolVersion = "1.21.0"
 }

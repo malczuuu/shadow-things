@@ -3,9 +3,9 @@ package io.github.malczuuu.ushadow.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.malczuuu.ushadow.model.constraint.ValidShadowState;
-import java.util.Map;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import java.util.Map;
 
 public final class UpdateDesiredModel {
 

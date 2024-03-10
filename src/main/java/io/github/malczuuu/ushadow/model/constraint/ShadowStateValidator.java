@@ -1,9 +1,9 @@
 package io.github.malczuuu.ushadow.model.constraint;
 
-import java.util.Map;
-import java.util.Map.Entry;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class ShadowStateValidator
     implements ConstraintValidator<ValidShadowState, Map<String, Object>> {
